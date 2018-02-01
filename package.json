@@ -1,0 +1,10 @@
+{
+  "name": "gnar-cli",
+  "version": "0.1.0",
+  "description": "Add Gnar approved configurations to your apps in jiffy",
+  "main": "index.js",
+  "repository": "https://github.com/TheGnarCo/gnar-node-cli",
+  "author": "Blake Williams",
+  "license": "MIT",
+  "private": true
+}
