@@ -9,7 +9,7 @@ class Prettier {
 
     this.installDependencies()
       .then(() => {
-        return this.writeConfig
+        return this.writeConfig()
       })
       .then(() => {
         return this.updatePackageJson()
@@ -43,7 +43,8 @@ class Prettier {
 
   private updatePackageJson() {
     process.stdout.write('Updating your package.json with hooks... \n')
-    const packageJson = JSON.parse(fs.readFileSync('package.json'))
+    const packageJson = this.readPackageJson()
+
     packageJson.scripts = packageJson.scripts || {}
     packageJson.scripts.precommit = 'lint-staged'
     packageJson['lint-staged'] = {
@@ -52,6 +53,12 @@ class Prettier {
 
     const formattedPackageJson = JSON.stringify(packageJson, null, 2)
     fs.writeFileSync('package.json', formattedPackageJson)
+  }
+
+  private readPackageJson(): any {
+    const contents = fs.readFileSync('package.json').toString()
+
+    return JSON.parse(contents)
   }
 }
 
