@@ -11,7 +11,7 @@ program
   .version(VERSION)
   .command(
     'prettier',
-    'installed prettier with default configuration and git hooks',
+    'install prettier with default configuration and git hooks',
   )
   .action(function() {
     new Prettier().run()
