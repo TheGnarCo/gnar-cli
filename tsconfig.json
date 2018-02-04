@@ -11,7 +11,5 @@
     "experimentalDecorators": true,
     "lib": ["es2015"]
   },
-  "include": [
-    "index.ts"
-  ]
+  "include": ["src/index.ts"]
 }

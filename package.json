@@ -8,12 +8,24 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "tsc --watch"
+    "start": "tsc --watch",
+    "precommit": "lint-staged"
   },
   "bin": {
     "gnar": "./dist/index.js"
   },
   "devDependencies": {
+    "@types/commander": "^2.12.2",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.1.0",
+    "prettier": "^1.10.2",
     "typescript": "^2.7.1"
+  },
+  "dependencies": {
+    "@types/node": "^9.4.0",
+    "commander": "^2.13.0"
+  },
+  "lint-staged": {
+    "*.{js,ts,json,css,md}": ["prettier --write", "git add"]
   }
 }
