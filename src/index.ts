@@ -9,10 +9,8 @@ let command
 
 program
   .version(VERSION)
-  .command(
-    'prettier',
-    'install prettier with default configuration and git hooks',
-  )
+  .command('prettier')
+  .description('install prettier with default configuration and git hooks')
   .action(function() {
     new Prettier().run()
   })

@@ -35,7 +35,7 @@ class Prettier {
   }
 
   private writeConfig() {
-    process.stdout.write('Writing Prettier config to .prettierrc')
+    process.stdout.write('Writing Prettier config to .prettierrc\n')
     fs.writeFileSync(PRETTIER_CONFIG_FILE_NAME, config)
 
     return Promise.resolve()
