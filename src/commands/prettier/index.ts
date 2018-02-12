@@ -1,64 +1,44 @@
 import { spawn } from 'child_process'
 import * as fs from 'fs'
 
+import PackageJson from '../../utils/package-json'
+import Yarn from '../../utils/yarn'
+
 const PRETTIER_CONFIG_FILE_NAME = '.prettierrc'
 
 class Prettier {
   public run() {
-    process.stdout.write('Setting up Prettier...\n')
+    process.stdout.write('Setting up Prettier...\n\n')
 
     this.installDependencies()
-      .then(() => {
-        return this.writeConfig()
-      })
-      .then(() => {
-        return this.updatePackageJson()
-      })
+      .then(this.writeConfig)
+      .then(this.updatePackageJson)
   }
 
   private installDependencies() {
-    process.stdout.write('Installing dependencies....\n')
-
-    const yarn = spawn('yarn', [
-      'add',
-      '--dev',
-      'prettier',
-      'lint-staged',
-      'husky',
-    ])
-
-    return new Promise(resolve => {
-      yarn.on('close', function() {
-        resolve()
-      })
-    })
+    return Yarn.addDev('prettier', 'lint-staged', 'husky')
   }
 
   private writeConfig() {
-    process.stdout.write('Writing Prettier config to .prettierrc\n')
+    process.stdout.write('Writing Prettier config to .prettierrc\n\n')
     fs.writeFileSync(PRETTIER_CONFIG_FILE_NAME, config)
 
     return Promise.resolve()
   }
 
   private updatePackageJson() {
-    process.stdout.write('Updating your package.json with hooks... \n')
-    const packageJson = this.readPackageJson()
-
-    packageJson.scripts = packageJson.scripts || {}
-    packageJson.scripts.precommit = 'lint-staged'
-    packageJson['lint-staged'] = {
-      '*.{js,ts,json,css,md}': ['prettier --write', 'git add'],
+    const scriptConfig: any = {
+      scripts: {
+        precommit: 'lint-staged',
+      },
+      'lint-staged': {
+        '*.{js,ts,json,css,md}': ['prettier --write', 'git add'],
+      },
     }
 
-    const formattedPackageJson = JSON.stringify(packageJson, null, 2)
-    fs.writeFileSync('package.json', formattedPackageJson)
-  }
-
-  private readPackageJson(): any {
-    const contents = fs.readFileSync('package.json').toString()
-
-    return JSON.parse(contents)
+    const packageJson = new PackageJson()
+    packageJson.merge(scriptConfig)
+    packageJson.write()
   }
 }
 
