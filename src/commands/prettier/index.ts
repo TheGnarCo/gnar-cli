@@ -31,6 +31,7 @@ class Prettier {
       scripts: {
         precommit: 'lint-staged',
       },
+      // tslint:disable object-literal-sort-keys
       'lint-staged': {
         '*.{js,ts,json,css,md}': ['prettier --write', 'git add'],
       },

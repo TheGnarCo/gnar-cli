@@ -2,7 +2,7 @@ import * as fs from 'fs'
 import { merge } from 'lodash'
 
 class PackageJson {
-  contents: string
+  public contents: string
 
   constructor() {
     const packageJson = fs.readFileSync('package.json').toString()
