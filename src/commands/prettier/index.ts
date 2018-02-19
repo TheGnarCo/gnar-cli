@@ -33,7 +33,7 @@ class Prettier {
       },
       // tslint:disable object-literal-sort-keys
       'lint-staged': {
-        '*.{js,ts,json,css,md}': ['prettier --write', 'git add'],
+        '*.{js,ts,tsx,json,css,md}': ['prettier --write', 'git add'],
       },
     }
 
@@ -43,8 +43,7 @@ class Prettier {
   }
 }
 
-const config = `
-{
+const config = `{
   trailingComma: "all",
   singleQuote: true,
   semi: false
