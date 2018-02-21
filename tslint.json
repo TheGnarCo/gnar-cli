@@ -11,9 +11,15 @@
       true,
       "ban-keywords",
       "check-format",
-      "allow-leading-underscore"
+      "allow-leading-underscore",
+      "allow-pascal-case"
     ],
     "interface-name": [true, "never-prefix"],
+    "interface-over-type-literal": false,
+    "jsx-boolean-value": [true, "never"],
+    "jsx-no-multiline-js": false,
+    "member-ordering": [false, {}],
+    "ordered-imports": false,
     "trailing-comma": [
       true,
       {
