@@ -22,6 +22,15 @@ const CONFIG = `{
     "ordered-imports": false,
     "quotemark": [true, "single", "jsx-double"],
     "semicolon": ["true", "never"],
+    "member-ordering": [
+      true,
+      {
+        "order": [
+          "public-constructor",
+          "public-instance-field"
+        ]
+      }
+    ],
     "trailing-comma": [
       true,
       {
