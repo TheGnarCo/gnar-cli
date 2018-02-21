@@ -23,6 +23,7 @@ const CONFIG = `{
       "allow-leading-underscore"
     ],
     "interface-name": [true, "never-prefix"],
+    "object-literal-key-quotes": false,
     "trailing-comma": [
       true,
       {
