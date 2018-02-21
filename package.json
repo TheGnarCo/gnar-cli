@@ -1,7 +1,7 @@
 {
   "name": "gnar-cli",
   "version": "0.0.6",
-  "description": "Add Gnar approved configurations to your apps in jiffy",
+  "description": "Add Gnar approved configurations to your apps in a jiffy",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/TheGnarCo/gnar-node-cli",
