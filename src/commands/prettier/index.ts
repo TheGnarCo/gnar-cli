@@ -30,6 +30,7 @@ class Prettier {
     const scriptConfig: any = {
       scripts: {
         precommit: 'lint-staged',
+        prettify: "prettier '*.{js,ts,tsx}' '{src,app,__tests__}/**/*.{js,ts,tsx}' --write",
       },
       // tslint:disable object-literal-sort-keys
       'lint-staged': {
