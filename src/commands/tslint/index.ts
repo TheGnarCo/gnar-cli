@@ -14,27 +14,27 @@ const CONFIG = `{
   },
   "rules": {
     "arrow-parens": [true, "ban-single-arg-parens"],
-    "semicolon": ["true", "never"],
-    "quotemark": [true, "single", "jsx-double"],
-    "variable-name": [
-      true,
-      "ban-keywords",
-      "check-format",
-      "allow-leading-underscore"
-    ],
     "interface-name": [true, "never-prefix"],
     "object-literal-key-quotes": false,
+    "quotemark": [true, "single", "jsx-double"],
+    "semicolon": ["true", "never"],
     "trailing-comma": [
       true,
       {
+        "esSpecCompliant": true,
         "multiline": {
-          "objects": "always",
           "arrays": "always",
           "functions": "always",
+          "objects": "always",
           "typeLiterals": "ignore"
-        },
-        "esSpecCompliant": true
+        }
       }
+    ],
+    "variable-name": [
+      true,
+      "allow-leading-underscore",
+      "ban-keywords",
+      "check-format"
     ]
   }
 }`
