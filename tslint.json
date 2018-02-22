@@ -5,15 +5,9 @@
   },
   "rules": {
     "arrow-parens": [true, "ban-single-arg-parens"],
-    "semicolon": ["true", "never"],
-    "quotemark": [true, "single", "jsx-double"],
-    "variable-name": [
-      true,
-      "ban-keywords",
-      "check-format",
-      "allow-leading-underscore"
-    ],
     "interface-name": [true, "never-prefix"],
+    "quotemark": [true, "single", "jsx-double"],
+    "semicolon": ["true", "never"],
     "trailing-comma": [
       true,
       {
@@ -25,6 +19,12 @@
         },
         "esSpecCompliant": true
       }
+    ],
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore"
     ]
   }
 }
