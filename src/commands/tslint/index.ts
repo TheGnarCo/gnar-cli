@@ -15,7 +15,11 @@ const CONFIG = `{
   "rules": {
     "arrow-parens": [true, "ban-single-arg-parens"],
     "interface-name": [true, "never-prefix"],
+    "interface-over-type-literal": false,
+    "jsx-boolean-value": [true, "never"],
+    "jsx-no-multiline-js": false,
     "object-literal-key-quotes": false,
+    "ordered-imports": false,
     "quotemark": [true, "single", "jsx-double"],
     "semicolon": ["true", "never"],
     "trailing-comma": [
@@ -33,6 +37,7 @@ const CONFIG = `{
     "variable-name": [
       true,
       "allow-leading-underscore",
+      "allow-pascal-case",
       "ban-keywords",
       "check-format"
     ]
