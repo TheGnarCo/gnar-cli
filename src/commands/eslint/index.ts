@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import { merge } from 'lodash'
 
 import PackageJson from '../../utils/package-json'
-import Yarn from '../../utils/yarn'
+import PackageInstaller from '../../utils/package-installer'
 
 const CONFIG_FILE_NAME = '.eslintrc.json'
 
@@ -63,7 +63,7 @@ class Eslint {
   }
 
   private installDependencies() {
-    return Yarn.addDev(
+    return PackageInstaller.addDev(
       'babel-eslint',
       'eslint',
       'eslint-config-airbnb',
@@ -87,7 +87,7 @@ class Eslint {
   private updatePackageJson() {
     const scriptConfig: any = {
       scripts: {
-        lint: "yarn run eslint '**/*.js'",
+        lint: "npm run eslint '**/*.js'",
       },
     }
 

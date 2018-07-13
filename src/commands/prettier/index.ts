@@ -2,7 +2,7 @@ import { spawn } from 'child_process'
 import * as fs from 'fs'
 
 import PackageJson from '../../utils/package-json'
-import Yarn from '../../utils/yarn'
+import PackageInstaller from '../../utils/package-installer'
 
 const PRETTIER_CONFIG_FILE_NAME = '.prettierrc'
 
@@ -16,7 +16,7 @@ class Prettier {
   }
 
   private installDependencies() {
-    return Yarn.addDev('prettier', 'lint-staged', 'husky')
+    return PackageInstaller.addDev('prettier', 'lint-staged', 'husky')
   }
 
   private writeConfig() {
@@ -30,7 +30,8 @@ class Prettier {
     const scriptConfig: any = {
       scripts: {
         precommit: 'lint-staged',
-        prettify: "prettier '*.{js,ts,tsx}' '{src,app,__tests__}/**/*.{js,ts,tsx}' --write",
+        prettify:
+          "prettier '*.{js,ts,tsx}' '{src,app,__tests__}/**/*.{js,ts,tsx}' --write",
       },
       // tslint:disable object-literal-sort-keys
       'lint-staged': {

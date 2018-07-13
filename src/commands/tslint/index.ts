@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import { merge } from 'lodash'
 
 import PackageJson from '../../utils/package-json'
-import Yarn from '../../utils/yarn'
+import PackageInstaller from '../../utils/package-installer'
 
 const CONFIG_FILE_NAME = 'tslint.json'
 
@@ -63,7 +63,7 @@ class Tslint {
   }
 
   private installDependencies() {
-    return Yarn.addDev('tslint', 'tslint-react')
+    return PackageInstaller.addDev('tslint', 'tslint-react')
   }
 
   private writeConfig(): Promise<void> {
@@ -79,7 +79,7 @@ class Tslint {
   private updatePackageJson() {
     const scriptConfig: any = {
       scripts: {
-        lint: "yarn run tslint -c tslint.json '**/*.ts' '**/*.tsx'",
+        lint: "npm run tslint -c tslint.json '**/*.ts' '**/*.tsx'",
       },
     }
 
