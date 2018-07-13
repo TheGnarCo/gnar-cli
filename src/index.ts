@@ -8,8 +8,9 @@ import Tslint from './commands/tslint'
 // tslint:disable no-var-requires
 const VERSION = require('../package.json').version
 
+program.version(VERSION)
+
 program
-  .version(VERSION)
   .command('prettier')
   .description('install prettier with default configuration and git hooks')
   .action(() => {
@@ -17,7 +18,6 @@ program
   })
 
 program
-  .version(VERSION)
   .command('eslint')
   .description('install eslint with default configuration')
   .action(() => {
@@ -25,7 +25,6 @@ program
   })
 
 program
-  .version(VERSION)
   .command('tslint')
   .description('install tslint with default configuration')
   .action(() => {
