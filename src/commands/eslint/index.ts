@@ -2,8 +2,8 @@ import { execSync } from 'child_process'
 import * as fs from 'fs'
 import { merge } from 'lodash'
 
-import PackageJson from '../../utils/package-json'
 import PackageInstaller from '../../utils/package-installer'
+import PackageJson from '../../utils/package-json'
 
 const CONFIG_FILE_NAME = '.eslintrc.json'
 
@@ -54,7 +54,11 @@ const CONFIG = `{
 }`
 
 class Eslint {
-  public run() {
+  private ignorePrettier: boolean
+
+  public run(ignorePrettier: boolean) {
+    this.ignorePrettier = ignorePrettier || false
+
     process.stdout.write('Setting up eslint...\n\n')
 
     this.installDependencies()
@@ -63,15 +67,7 @@ class Eslint {
   }
 
   private installDependencies() {
-    return PackageInstaller.addDev(
-      'babel-eslint',
-      'eslint',
-      'eslint-config-airbnb',
-      'eslint-plugin-import',
-      'eslint-plugin-jsx-a11y',
-      'eslint-plugin-react',
-      'eslint-config-prettier',
-    )
+    return PackageInstaller.addDev(...this.dependencies())
   }
 
   private writeConfig() {
@@ -84,10 +80,26 @@ class Eslint {
     return Promise.resolve()
   }
 
+  private dependencies = () => {
+    const default_dependencies = [
+      'babel-eslint',
+      'eslint',
+      'eslint-config-airbnb',
+      'eslint-plugin-import',
+      'eslint-plugin-jsx-a11y',
+      'eslint-plugin-react',
+    ]
+    if (this.ignorePrettier) {
+      return default_dependencies
+    }
+
+    return [...default_dependencies, 'eslint-config-prettier']
+  }
+
   private updatePackageJson() {
     const scriptConfig: any = {
       scripts: {
-        lint: "npm run eslint '**/*.js'",
+        lint: 'npm run eslint \'**/*.js\'',
       },
     }
 

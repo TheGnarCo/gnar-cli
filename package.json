@@ -17,7 +17,6 @@
     "gnar": "dist/index.js"
   },
   "devDependencies": {
-    "@types/commander": "^2.12.2",
     "@types/lodash": "^4.14.102",
     "husky": "^0.14.3",
     "lint-staged": "^6.1.0",
@@ -28,10 +27,13 @@
   },
   "dependencies": {
     "@types/node": "^9.4.0",
-    "commander": "^2.13.0",
+    "commander": "^3.00.0",
     "lodash": "^4.17.5"
   },
   "lint-staged": {
-    "*.{js,ts,json,css,md}": ["prettier --write", "git add"]
+    "*.{js,ts,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
