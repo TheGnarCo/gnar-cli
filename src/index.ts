@@ -9,8 +9,8 @@ import Typescript from './commands/typescript'
 // tslint:disable no-var-requires
 const VERSION = require('../package.json').version
 interface TypescriptInstallOptions {
-  with_config: boolean
-  add_scripts: boolean
+  withConfig: boolean
+  addScripts: boolean
 }
 
 program.version(VERSION)
@@ -39,10 +39,10 @@ program
 program
   .command('typescript')
   .description('install Typescript globally')
-  .option('-C, --with_config', 'add a local tsconfig file')
-  .option('`-S, --add_scripts', 'add a local tsconfig file')
-  .action(({ with_config, add_scripts }: TypescriptInstallOptions) => {
-    new Typescript().run(with_config, add_scripts)
+  .option('-C, --with-config', 'add a local tsconfig file')
+  .option('-S, --add-scripts', 'add a local tsconfig file')
+  .action(({ withConfig, addScripts }: TypescriptInstallOptions) => {
+    new Typescript().run(withConfig, addScripts)
   })
 
 program.parse(process.argv)
