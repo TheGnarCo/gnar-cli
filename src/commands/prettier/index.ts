@@ -1,8 +1,7 @@
-import { spawn } from 'child_process'
 import * as fs from 'fs'
 
-import PackageJson from '../../utils/package-json'
 import PackageInstaller from '../../utils/package-installer'
+import PackageJson from '../../utils/package-json'
 
 const PRETTIER_CONFIG_FILE_NAME = '.prettierrc'
 

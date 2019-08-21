@@ -1,57 +1,8 @@
-import { execSync } from 'child_process'
 import * as fs from 'fs'
-import { merge } from 'lodash'
 
-import PackageJson from '../../utils/package-json'
 import PackageInstaller from '../../utils/package-installer'
-
-const CONFIG_FILE_NAME = 'tslint.json'
-
-const CONFIG = `{
-  "extends": ["tslint:recommended", "tslint-react"],
-  "linterOptions": {
-    "exclude": ["node_modules/**"]
-  },
-  "rules": {
-    "arrow-parens": [true, "ban-single-arg-parens"],
-    "interface-name": [true, "never-prefix"],
-    "interface-over-type-literal": false,
-    "jsx-boolean-value": [true, "never"],
-    "jsx-no-multiline-js": false,
-    "object-literal-key-quotes": false,
-    "ordered-imports": false,
-    "quotemark": [true, "single", "jsx-double"],
-    "semicolon": ["true", "never"],
-    "member-ordering": [
-      true,
-      {
-        "order": [
-          "public-constructor",
-          "public-instance-field"
-        ]
-      }
-    ],
-    "trailing-comma": [
-      true,
-      {
-        "esSpecCompliant": true,
-        "multiline": {
-          "arrays": "always",
-          "functions": "always",
-          "objects": "always",
-          "typeLiterals": "ignore"
-        }
-      }
-    ],
-    "variable-name": [
-      true,
-      "allow-leading-underscore",
-      "allow-pascal-case",
-      "ban-keywords",
-      "check-format"
-    ]
-  }
-}`
+import PackageJson from '../../utils/package-json'
+import { CONFIG, CONFIG_FILE_NAME } from './defaultConfig'
 
 class Tslint {
   public run() {
