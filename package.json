@@ -11,7 +11,8 @@
     "prepare": "tsc",
     "precommit": "lint-staged",
     "start": "tsc --watch",
-    "lint": "yarn run tslint -c tslint.json '**/*.ts' '**/*.tsx'"
+    "lint": "yarn run tslint -c tslint.json '**/*.ts' '**/*.tsx'",
+    "prettify": "prettier '*.{js,ts,tsx}' '{src,app,__tests__}/**/*.{js,ts,tsx}' --write"
   },
   "bin": {
     "gnar": "dist/index.js"
@@ -19,9 +20,9 @@
   "devDependencies": {
     "@types/commander": "^2.12.2",
     "@types/lodash": "^4.14.102",
-    "husky": "^0.14.3",
-    "lint-staged": "^7.2.0",
-    "prettier": "^1.13.7",
+    "husky": "^3.0.4",
+    "lint-staged": "^9.2.3",
+    "prettier": "^1.18.2",
     "tslint": "^5.10.0",
     "tslint-react": "^3.6.0",
     "typescript": "^2.7.1"
@@ -33,6 +34,10 @@
   },
   "lint-staged": {
     "*.{js,ts,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{js,ts,tsx,json,css,md}": [
       "prettier --write",
       "git add"
     ]
