@@ -13,7 +13,7 @@ export const CONFIG = `{
     "object-literal-key-quotes": false,
     "ordered-imports": false,
     "quotemark": [true, "single", "jsx-double"],
-    "semicolon": ["true", "never"],
+    "semicolon": [true, "never"],
     "member-ordering": [
       true,
       {
