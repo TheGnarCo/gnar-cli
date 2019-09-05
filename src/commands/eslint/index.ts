@@ -2,8 +2,9 @@ import * as fs from 'fs'
 
 import PackageInstaller from '../../utils/package-installer'
 import PackageJson from '../../utils/package-json'
-import { CONFIG, CONFIG_FILE_NAME } from './defaultConfig'
 
+const CONFIG_FILE_NAME = '.eslintrc.json'
+const TEMPLATE_FILE_PATH = 'src/commands/eslint/.eslintrc.json'
 class Eslint {
   public run() {
     process.stdout.write('Setting up eslint...\n\n')
@@ -30,7 +31,8 @@ class Eslint {
       `Writing the following config to ${CONFIG_FILE_NAME}\n\n`,
     )
 
-    fs.writeFileSync(CONFIG_FILE_NAME, CONFIG)
+    const configFile = fs.readFileSync(TEMPLATE_FILE_PATH).toString()
+    fs.writeFileSync(CONFIG_FILE_NAME, configFile)
 
     return Promise.resolve()
   }

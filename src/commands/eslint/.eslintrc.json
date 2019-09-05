@@ -1,5 +1,4 @@
-export const CONFIG_FILE_NAME = '.eslintrc.json'
-export const CONFIG = `{
+{
   "extends": ["airbnb", "prettier"],
   "parser": "babel-eslint",
   "globals": {
@@ -43,4 +42,4 @@ export const CONFIG = `{
     "no-use-before-define": "off",
     "react/jsx-filename-extension": "off"
   }
-}`
+}
