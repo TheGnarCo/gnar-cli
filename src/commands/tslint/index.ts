@@ -2,7 +2,8 @@ import * as fs from 'fs'
 
 import PackageInstaller from '../../utils/package-installer'
 import PackageJson from '../../utils/package-json'
-import { CONFIG, CONFIG_FILE_NAME } from './defaultConfig'
+
+const CONFIG_FILE_NAME = 'tslint.json'
 
 class Tslint {
   public run() {
@@ -22,7 +23,8 @@ class Tslint {
       `Writing the following config to ${CONFIG_FILE_NAME}\n\n`,
     )
 
-    fs.writeFileSync(CONFIG_FILE_NAME, CONFIG)
+    const configFile = fs.readFileSync(CONFIG_FILE_NAME)
+    fs.writeFileSync(CONFIG_FILE_NAME, configFile)
 
     return Promise.resolve()
   }

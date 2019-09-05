@@ -11,7 +11,7 @@
     "prepare": "tsc",
     "precommit": "lint-staged",
     "start": "tsc --watch",
-    "lint": "yarn run tslint -c tslint.json '**/*.ts' '**/*.tsx'"
+    "lint": "npm run tslint -c tslint.json '**/*.ts' '**/*.tsx'"
   },
   "bin": {
     "gnar": "dist/index.js"
@@ -22,8 +22,8 @@
     "husky": "^0.14.3",
     "lint-staged": "^6.1.0",
     "prettier": "^1.10.2",
-    "tslint": "^5.9.1",
-    "tslint-react": "^3.5.1",
+    "tslint": "^5.19.0",
+    "tslint-react": "^4.0.0",
     "typescript": "^2.7.1"
   },
   "dependencies": {
