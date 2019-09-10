@@ -53,11 +53,19 @@ const CONFIG = `{
   }
 }`
 
+const DEFAULT_DEPENDENCIES = [
+  'babel-eslint',
+  'eslint',
+  'eslint-config-airbnb',
+  'eslint-plugin-import',
+  'eslint-plugin-jsx-a11y',
+  'eslint-plugin-react',
+]
 class Eslint {
   private ignorePrettier: boolean
 
-  public run(ignorePrettier: boolean) {
-    this.ignorePrettier = ignorePrettier || false
+  public run(ignorePrettier: boolean = false) {
+    this.ignorePrettier = ignorePrettier
 
     process.stdout.write('Setting up eslint...\n\n')
 
@@ -74,32 +82,23 @@ class Eslint {
     process.stdout.write(
       `Writing the following config to ${CONFIG_FILE_NAME}\n\n`,
     )
-
     fs.writeFileSync(CONFIG_FILE_NAME, CONFIG)
 
     return Promise.resolve()
   }
 
   private dependencies = () => {
-    const default_dependencies = [
-      'babel-eslint',
-      'eslint',
-      'eslint-config-airbnb',
-      'eslint-plugin-import',
-      'eslint-plugin-jsx-a11y',
-      'eslint-plugin-react',
-    ]
     if (this.ignorePrettier) {
-      return default_dependencies
+      return DEFAULT_DEPENDENCIES
     }
 
-    return [...default_dependencies, 'eslint-config-prettier']
+    return [...DEFAULT_DEPENDENCIES, 'eslint-config-prettier']
   }
 
   private updatePackageJson() {
     const scriptConfig: any = {
       scripts: {
-        lint: 'npm run eslint \'**/*.js\'',
+        lint: "yarn run eslint '**/*.js'",
       },
     }
 

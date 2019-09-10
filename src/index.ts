@@ -20,9 +20,9 @@ program
 program
   .command('eslint')
   .description('install eslint with default configuration')
-  .option('-u, --ugly', 'install eslint without prettier configuration')
-  .action(({ ugly }) => {
-    new Eslint().run(ugly)
+  .option('-P, --noPrettier', 'install eslint without prettier configuration')
+  .action(({ noPrettier }) => {
+    new Eslint().run(noPrettier)
   })
 
 program
