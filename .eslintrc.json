@@ -3,7 +3,11 @@
     "browser": true,
     "es2021": true
   },
-  "plugins": ["@typescript-eslint", "regexp", "prettier"],
+  "plugins": [
+    "@typescript-eslint",
+    "regexp",
+    "prettier"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -18,15 +22,28 @@
     "createDefaultProgram": true
   },
   "rules": {
-    "arrow-body-style": [1, "as-needed"],
+    "arrow-body-style": [
+      1,
+      "as-needed"
+    ],
     "class-methods-use-this": "off",
-    "func-names": ["error", "never"],
+    "func-names": [
+      "error",
+      "never"
+    ],
     "import/no-webpack-loader-syntax": "off",
     "import/prefer-default-export": "off",
     "import/order": [
       "error",
       {
-        "groups": ["builtin", "external", "internal", "sibling", "index", "parent"]
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "sibling",
+          "index",
+          "parent"
+        ]
       }
     ],
     "no-else-return": "off",
