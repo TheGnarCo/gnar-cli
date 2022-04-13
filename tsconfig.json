@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "lib": ["es2017", "es7", "es6"],
+    "lib": [
+      "es2017",
+      "es7",
+      "es6"
+    ],
     "allowSyntheticDefaultImports": false,
     "esModuleInterop": true,
     "moduleResolution": "node",
@@ -21,5 +25,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/index.ts"]
+  "include": [
+    "src/index.ts"
+  ]
 }
