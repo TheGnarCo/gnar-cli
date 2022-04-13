@@ -1,0 +1,12 @@
+{
+  "coverageDirectory": "./coverage/",
+  "collectCoverage": true,
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js|ts)$",
+  "moduleDirectories": ["node_modules", "src"],
+  "moduleFileExtensions": ["ts", "js"],
+  "globalSetup": "./tests/jest/global-setup.js",
+  "coveragePathIgnorePatterns": ["dist/", "node_modules/", ".test-support/", "test"]
+}
