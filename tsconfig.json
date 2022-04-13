@@ -1,31 +1,26 @@
 {
-    "compilerOptions": {
-        "target": "esnext",
-        "lib": [
-            "es2017",
-            "es7",
-            "es6"
-        ],
-        "allowSyntheticDefaultImports": false,
-        "esModuleInterop": true,
-        "moduleResolution": "node",
-        "module": "commonjs",
-        "sourceMap": true,
-        "outDir": "dist",
-        "declaration": true,
-        /* Strict Type-Checking Options */
-        "strict": true,
-        "strictNullChecks": true,
-        "strictFunctionTypes": true,
-        "noImplicitThis": true,
-        "alwaysStrict": true,
-        /* Additional Checks */
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true
-    },
-    "include": [
-        "src/index.ts"
-    ]
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["es2017", "es7", "es6"],
+    "allowSyntheticDefaultImports": false,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "sourceMap": true,
+    "outDir": "dist",
+    "declaration": true,
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    /* Additional Checks */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src/index.ts"],
+  "exclude": [".test-support"]
 }
