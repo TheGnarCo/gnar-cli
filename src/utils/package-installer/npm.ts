@@ -1,4 +1,4 @@
-import { PackageInstallable } from './index'
+import { PackageInstallable } from './types'
 
 class Npm implements PackageInstallable {
   public addDev(packages: string): string {
