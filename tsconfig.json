@@ -27,5 +27,8 @@
   },
   "include": [
     "src/index.ts"
+  ],
+  "exclude": [
+    ".test-support"
   ]
 }
