@@ -2,8 +2,7 @@
 
 import { program } from 'commander'
 
-import { Eslint } from './commands/eslint'
-import { Prettier } from './commands/prettier'
+import { Eslint, Prettier } from './commands'
 
 program.version('0.0.dev')
 
