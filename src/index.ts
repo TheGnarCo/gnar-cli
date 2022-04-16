@@ -7,14 +7,22 @@ import { Eslint, Prettier, Rails } from './commands'
 program.version('0.0.dev')
 
 program
-  .command('prettier')
-  .description('Install Prettier with Gnarly Opinions')
-  .action(Prettier.run)
-
-program
-  .command('eslint')
-  .description('Install ESlint + Prettier with Gnarly Opinions')
-  .action(Eslint.run)
+  .command('add')
+  .argument('<packageName>', 'the package name')
+  .description('Add and Setup Dependencies with Gnarly Opinions')
+  .action(packageName => {
+    switch (packageName.toLowerCase()) {
+      case 'prettier':
+        Prettier.add()
+        break
+      case 'eslint':
+        Eslint.add()
+        break
+      default:
+        process.stdout.write(`Unrecognized package name passed to gnar add: ${packageName}`)
+        break
+    }
+  })
 
 program
   .command('rails')

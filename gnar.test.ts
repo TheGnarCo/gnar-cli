@@ -11,7 +11,7 @@ const JS_SETUP = [
 ].join(' && ')
 
 const ESLINT_TEST_HACKS = '--no-eslintrc -c .eslintrc.json'
-const RAILS_APP = 'rails-test-app'
+const RAILS_APP = 'rails_test_app'
 
 describe('Gnar-CLI', () => {
   beforeAll(() => {

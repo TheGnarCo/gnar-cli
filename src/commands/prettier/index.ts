@@ -5,7 +5,7 @@ import { Gnarrc } from '../../utils/gnarrc'
 export class Prettier {
   static command = 'prettier'
 
-  static async run() {
+  static async add() {
     process.stdout.write(`Setting up ${Prettier.command}...\n\n`)
 
     await PackageInstaller.addDevFromGnarrc(Prettier.command)

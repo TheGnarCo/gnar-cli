@@ -5,7 +5,7 @@ import PackageJson from '../../utils/package-json'
 export class Eslint {
   static command = 'eslint'
 
-  static async run() {
+  static async add() {
     process.stdout.write(`Setting up ${Eslint.command}...\n\n`)
 
     await PackageInstaller.addDevFromGnarrc(Eslint.command)

@@ -5,6 +5,23 @@ import { Gnarrc } from '../../utils/gnarrc'
 export class Rails {
   static command = 'rails'
 
+  static async init(name: string, extraArgs: string) {
+    process.stdout.write(`Setting up Rails New with Gnarly opinions...\n`)
+
+    const rawOptions = await Gnarrc.get('rails/7/.railsrc')
+
+    const railsCommand = [
+      `rails new`,
+      `${name}`,
+      `${rawOptions.replace(/\r\n|\r|\n/g, ' ')}`.trim(),
+      `${extraArgs}`,
+      `\n`,
+    ].join(' ')
+
+    process.stdout.write(`Running ${railsCommand}`)
+    execCommand(railsCommand)
+  }
+
   static async run(
     mainCommand: string,
     subCommand: string,
