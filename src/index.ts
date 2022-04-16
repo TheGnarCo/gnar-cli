@@ -25,10 +25,21 @@ program
   })
 
 program
-  .command('rails')
-  .argument('<mainCommand>', 'first argument passed to rails')
-  .argument('[subcommand]', 'Second command passed to rails')
-  .description('install ESLint with Gnarly configuration - now with Prettier!')
-  .action(Rails.run)
+  .command('init')
+  .argument('<frameworkName>', 'the framework name')
+  .argument('<subCommand>', 'subcommand')
+  .description('Greenfield Frameworks with Gnarly Opinions')
+  .action((frameworkName, subCommand, _options, command) => {
+    const extraArgs = command.args.filter((arg: string) => arg !== subCommand).join(' ')
+
+    switch (frameworkName.toLowerCase()) {
+      case 'rails':
+        Rails.init(subCommand, extraArgs)
+        break
+      default:
+        process.stdout.write(`Unrecognized framework name passed to gnar add: ${frameworkName}`)
+        break
+    }
+  })
 
 program.parse(process.argv)
