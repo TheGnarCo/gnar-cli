@@ -1,34 +1,19 @@
 #!/usr/bin/env node
 
-import * as program from 'commander'
-import Eslint from './commands/eslint'
-import Prettier from './commands/prettier'
-import Tslint from './commands/tslint'
+import { program } from 'commander'
 
-// tslint:disable no-var-requires
-const VERSION = require('../package.json').version
+import { Eslint, Prettier } from './commands'
 
-program.version(VERSION)
+program.version('0.0.dev')
 
 program
   .command('prettier')
-  .description('install prettier with default configuration and git hooks')
-  .action(() => {
-    new Prettier().run()
-  })
+  .description('Install Prettier with Gnarly Opinions')
+  .action(Prettier.run)
 
 program
   .command('eslint')
-  .description('install eslint with default configuration')
-  .action(() => {
-    new Eslint().run()
-  })
-
-program
-  .command('tslint')
-  .description('install tslint with default configuration')
-  .action(() => {
-    new Tslint().run()
-  })
+  .description('Install ESlint + Prettier with Gnarly Opinions')
+  .action(Eslint.run)
 
 program.parse(process.argv)

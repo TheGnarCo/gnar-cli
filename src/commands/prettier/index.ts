@@ -1,41 +1,47 @@
-import { spawn } from 'child_process'
-import * as fs from 'fs'
+import * as fs from 'node:fs'
 
+import { PackageInstaller } from '../../utils/package-installer'
 import PackageJson from '../../utils/package-json'
-import PackageInstaller from '../../utils/package-installer'
 
 const PRETTIER_CONFIG_FILE_NAME = '.prettierrc'
+const CONFIG = `{
+  "semi": false,
+  "trailingComma": "all",
+  "singleQuote": true,
+  "printWidth": 100,
+  "tabWidth": 2,
+  "arrowParens": "avoid"
+}`
 
-class Prettier {
-  public run() {
-    process.stdout.write('Setting up Prettier...\n\n')
+export class Prettier {
+  static command = 'prettier'
 
-    this.installDependencies()
-      .then(this.writeConfig)
-      .then(this.updatePackageJson)
+  static async run() {
+    process.stdout.write(`Setting up ${Prettier.command}...\n\n`)
+
+    await Prettier.installDependencies()
+    await Prettier.writeConfig()
+    Prettier.updatePackageJson()
   }
 
-  private installDependencies() {
-    return PackageInstaller.addDev('prettier', 'lint-staged', 'husky')
+  static async installDependencies() {
+    return PackageInstaller.addDev(Prettier.command, 'lint-staged', 'husky')
   }
 
-  private writeConfig() {
-    process.stdout.write('Writing Prettier config to .prettierrc\n\n')
-    fs.writeFileSync(PRETTIER_CONFIG_FILE_NAME, config)
+  static async writeConfig() {
+    process.stdout.write(`Writing ${Prettier.command} config to .prettierrc\n\n`)
+    fs.writeFileSync(PRETTIER_CONFIG_FILE_NAME, CONFIG)
 
     return Promise.resolve()
   }
 
-  private updatePackageJson() {
-    const scriptConfig: any = {
+  static updatePackageJson() {
+    const scriptConfig = {
       scripts: {
-        precommit: 'lint-staged',
-        prettify:
-          "prettier '*.{js,ts,tsx}' '{src,app,__tests__}/**/*.{js,ts,tsx}' --write",
+        prettify: "prettier '*.{js,ts,tsx}' '{src,app,__tests__}/**/*.{js,ts,tsx}' --write",
       },
-      // tslint:disable object-literal-sort-keys
       'lint-staged': {
-        '*.{js,ts,tsx,json,css,md}': ['prettier --write', 'git add'],
+        '*.{js,ts,tsx,json,css,md}': ['prettier --write'],
       },
     }
 
@@ -44,12 +50,3 @@ class Prettier {
     packageJson.write()
   }
 }
-
-const config = `{
-  trailingComma: "all",
-  singleQuote: true,
-  semi: false
-}
-`
-
-export default Prettier

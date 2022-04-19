@@ -1,0 +1,6 @@
+yarn run tsc -p . "$@"
+if [[ ${SKIP_VERSION:-"unset"} == "unset" || ${SKIP_VERSION} == "false" ]]
+then
+  version=$(node -p -e "require('./package.json').version")
+  sed -i "" "s/0.0.dev/$version/" dist/index.js
+fi
