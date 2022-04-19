@@ -37,7 +37,8 @@ describe('Gnar-CLI', () => {
         try {
           execCommand(`cd ${path} && ${testCommand}`)
         } catch (ex) {
-          process.stdout.write(ex?.stdout)
+          const foo: { stdout: string } = ex
+          process.stdout.write(foo.stdout)
         }
       }).not.toThrowError()
     })
