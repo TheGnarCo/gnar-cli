@@ -1,20 +1,49 @@
-<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>gnar-cli - v0.0.10</title><meta name="description" content="Documentation for gnar-cli - v0.0.10"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">gnar-cli - v0.0.10</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1> gnar-cli - v0.0.10</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>gnar-cli - v0.0.10</title><meta name="description" content="Documentation for gnar-cli - v0.0.10"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">gnar-cli - v0.0.10</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1> gnar-cli - v0.0.10 </h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
 <a href="#gnar-cli" id="gnar-cli" style="color: inherit; text-decoration: none;">
   <h1>Gnar CLI</h1>
 </a>
-<p>The fastest way to get Gnar Approved&trade; configurations into your
-application.</p>
+<p>The easiest way to adorn your applications with Gnarly Opinions&trade;</p>
 
 <a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
   <h1>Usage</h1>
 </a>
-<p>First, install Gnar CLI with <code>yarn global add gnar-cli</code>. Now run <code>gnar --help</code></p>
+<p>Gnar-cli can be installed with your choice of NPM package manager. It should be installed globally:</p>
+<pre><code class="language-js"><span class="hl-0">yarn</span><span class="hl-1"> </span><span class="hl-0">add</span><span class="hl-1"> --</span><span class="hl-0">global</span><span class="hl-1"> </span><span class="hl-0">gnar</span><span class="hl-1">-</span><span class="hl-0">cli</span>
+</code></pre>
+<p>This will make the <code>gnar</code> executable available in your terminal.</p>
+
+<a href="#commands" id="commands" style="color: inherit; text-decoration: none;">
+  <h2>Commands</h2>
+</a>
+<p>There are two commands provided by <code>Gnar-cli</code>: <code>init</code> and <code>add</code>.</p>
+
+<a href="#gnar-init" id="gnar-init" style="color: inherit; text-decoration: none;">
+  <h3>gnar init</h3>
+</a>
+<p>You can use <code>init</code> to greenfield new projects with specific frameworks.</p>
+<pre><code class="language-bash"><span class="hl-1">$ gnar init rails new-app</span>
+</code></pre>
+<p>This is equivalent to running <code>rails new new-app &lt;gnarly config options here&gt;</code>.</p>
+<p>Right now, <code>init</code> supports <code>rails</code>.</p>
+
+<a href="#gnar-add" id="gnar-add" style="color: inherit; text-decoration: none;">
+  <h3>gnar add</h3>
+</a>
+<p>You can use <code>add</code> to configure already-existing projects with specific configurations for specific dependencies.</p>
+<pre><code class="language-bash"><span class="hl-1">$ gnar add eslint</span>
+</code></pre>
+<p>This will add <code>eslint</code> to the <code>package.json</code> of the local project, as well as modifying it with Gnarly Opinions.</p>
+<p>Right now, <code>add</code> supports <code>eslint</code> and <code>prettier</code>.</p>
+
+<a href="#configs" id="configs" style="color: inherit; text-decoration: none;">
+  <h2>Configs</h2>
+</a>
+<p>Configuration information and opinons for these commands are maintained by the <a href="https://github.com/TheGnarCo/.gnarrc"><code>.gnarrc</code></a> repo. PR&#39;s Welcome!</p>
 
 <a href="#developing" id="developing" style="color: inherit; text-decoration: none;">
   <h1>Developing</h1>
 </a>
-<p>Gnar-CLI is powered by <a href="https://www.typescriptlang.org/">TypeScript</a> which means the project has to be compiled
-before being run.</p>
+<p>Gnar-CLI is powered by <a href="https://www.typescriptlang.org/">TypeScript</a> which means the project has to be compiled before being run.</p>
 <ol>
 <li>Run <code>yarn</code> to install dependencies</li>
 <li>Run <code>yarn build:watch</code> to start the TypeScript compiler in watch mode.</li>
@@ -28,4 +57,4 @@ before being run.</p>
 <p>The Gnar Company is a Boston-based development company that builds robust
 web and mobile apps designed for the long haul.</p>
 <p>For more information see <a href="https://www.thegnar.co/">our website</a>.</p>
-</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-class"><a href="classes/Eslint.html" class="tsd-kind-icon">Eslint</a></li><li class="tsd-kind-class"><a href="classes/Prettier.html" class="tsd-kind-icon">Prettier</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-class"><a href="classes/Eslint.html" class="tsd-kind-icon">Eslint</a></li><li class="tsd-kind-class"><a href="classes/Prettier.html" class="tsd-kind-icon">Prettier</a></li><li class="tsd-kind-class"><a href="classes/Rails.html" class="tsd-kind-icon">Rails</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
