@@ -5,6 +5,7 @@ import Yarn from './yarn'
 import { PackageInstallable } from './types'
 import { execCommand } from '../exec-command'
 import { Gnarrc } from '../gnarrc'
+import { stdOut } from '../std-out'
 
 const YARN_LOCK_FILE = 'yarn.lock'
 
@@ -14,7 +15,7 @@ export class PackageInstaller {
   static async addDev(...packages: string[]): Promise<void> {
     const command = PackageInstaller.manager.addDev(packages.join(' '))
 
-    process.stdout.write(`Installing dev dependencies via: ${command}\n\n`)
+    stdOut(`Installing dev dependencies via: ${command}\n\n`)
 
     execCommand(command)
   }

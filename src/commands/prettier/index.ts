@@ -1,12 +1,13 @@
 import { PackageInstaller } from '../../utils/package-installer'
 import PackageJson from '../../utils/package-json'
 import { Gnarrc } from '../../utils/gnarrc'
+import { stdOut } from '../../utils/std-out'
 
 export class Prettier {
   static command = 'prettier'
 
   static async add() {
-    process.stdout.write(`Setting up ${Prettier.command}...\n\n`)
+    stdOut(`Setting up ${Prettier.command}...\n\n`)
 
     await PackageInstaller.addDevFromGnarrc(Prettier.command)
     await Gnarrc.getFile(`${Prettier.command}/.prettierrc`)

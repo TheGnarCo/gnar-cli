@@ -3,6 +3,7 @@
 import { program } from 'commander'
 
 import { Eslint, Prettier, Rails } from './commands'
+import { stdOut } from './utils/std-out'
 
 program.version('0.0.dev')
 
@@ -19,7 +20,7 @@ program
         Eslint.add()
         break
       default:
-        process.stdout.write(`Unrecognized package name passed to gnar add: ${packageName}`)
+        stdOut(`Unrecognized package name passed to gnar add: ${packageName}`)
         break
     }
   })
@@ -37,7 +38,7 @@ program
         Rails.init(subCommand, extraArgs)
         break
       default:
-        process.stdout.write(`Unrecognized framework name passed to gnar add: ${frameworkName}`)
+        stdOut(`Unrecognized framework name passed to gnar add: ${frameworkName}`)
         break
     }
   })

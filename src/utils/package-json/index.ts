@@ -1,6 +1,7 @@
 import { writeFileSync, readFileSync } from 'node:fs'
 import { merge } from 'lodash'
 import { Gnarrc } from '../gnarrc'
+import { stdOut } from '../std-out'
 
 class PackageJson {
   public contents: string
@@ -13,8 +14,8 @@ class PackageJson {
   public merge(config: Record<string, unknown>): PackageJson {
     const prettyConfig = JSON.stringify(config, undefined, 2)
 
-    process.stdout.write('Merging the following into your package.json... \n')
-    process.stdout.write(`${prettyConfig}\n\n`)
+    stdOut('Merging the following into your package.json... \n')
+    stdOut(`${prettyConfig}\n\n`)
 
     merge(this.contents, config)
 
