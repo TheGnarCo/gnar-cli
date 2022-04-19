@@ -1,9 +1,27 @@
 import { Command } from 'commander'
 import { execCommand } from '../../utils/exec-command'
 import { Gnarrc } from '../../utils/gnarrc'
+import { stdOut } from '../../utils/std-out'
 
 export class Rails {
   static command = 'rails'
+
+  static async init(name: string, extraArgs: string) {
+    stdOut(`Setting up Rails New with Gnarly opinions...\n`)
+
+    const rawOptions = await Gnarrc.get('rails/7/.railsrc')
+
+    const railsCommand = [
+      `rails new`,
+      `${name}`,
+      `${rawOptions.replace(/\r\n|\r|\n/g, ' ')}`.trim(),
+      `${extraArgs}`,
+      `\n`,
+    ].join(' ')
+
+    stdOut(`Running ${railsCommand}`)
+    execCommand(railsCommand)
+  }
 
   static async run(
     mainCommand: string,
@@ -15,7 +33,7 @@ export class Rails {
       .filter(arg => arg !== mainCommand && arg !== subCommand)
       .join(' ')
 
-    process.stdout.write(`Setting up Rails New with Gnarly opinions...\n`)
+    stdOut(`Setting up Rails New with Gnarly opinions...\n`)
 
     const rawOptions = await Gnarrc.get('rails/7/.railsrc')
 
@@ -28,7 +46,7 @@ export class Rails {
       `\n`,
     ].join(' ')
 
-    process.stdout.write(`Running ${railsCommand}`)
+    stdOut(`Running ${railsCommand}`)
     execCommand(railsCommand)
   }
 }
