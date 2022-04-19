@@ -19,6 +19,9 @@ jobs:
         with:
           cmd: "install --ignore-engines --ignore-scripts"
 
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+
       - name: Run Tests
         uses: borales/actions-yarn@v2.3.0
         with:
