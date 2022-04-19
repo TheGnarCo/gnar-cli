@@ -11,6 +11,7 @@ const JS_SETUP = [
 ].join(' && ')
 
 const ESLINT_TEST_HACKS = '--no-eslintrc -c .eslintrc.json'
+const RAILS_APP = 'rails-test-app'
 
 describe('Gnar-CLI', () => {
   beforeAll(() => {
@@ -19,18 +20,26 @@ describe('Gnar-CLI', () => {
   describe.each([
     ['eslint', JS_SETUP, `yarn lint ${ESLINT_TEST_HACKS}`],
     ['prettier', JS_SETUP, 'yarn prettify'],
+    [`rails new ${RAILS_APP}`, 'gem install rails', `cd ${RAILS_APP} && bin/rspec`],
   ])('%s', (command, setupCommands, testCommand) => {
     const path: string = commandTestPath(command)
 
     beforeAll(() => {
       execCommand(`mkdir -p ${path}`)
-      execCommand(`cd ${path} && ${setupCommands}`)
+      if (setupCommands.length > 0) {
+        execCommand(`cd ${path} && ${setupCommands}`)
+      }
       execCommand(`cd ${path} && node ./../dist/index.js ${command}`)
     })
 
     it(`can successfully run ${testCommand}`, () => {
       expect(() => {
-        execCommand(`cd ${path} && ${testCommand}`)
+        try {
+          execCommand(`cd ${path} && ${testCommand}`)
+        } catch (ex) {
+          const foo: { stdout: string } = ex as { stdout: string }
+          process.stdout.write(foo.stdout)
+        }
       }).not.toThrowError()
     })
   })

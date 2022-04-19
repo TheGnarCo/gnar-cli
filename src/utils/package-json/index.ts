@@ -1,5 +1,6 @@
 import { writeFileSync, readFileSync } from 'node:fs'
 import { merge } from 'lodash'
+import { Gnarrc } from '../gnarrc'
 
 class PackageJson {
   public contents: string
@@ -18,6 +19,11 @@ class PackageJson {
     merge(this.contents, config)
 
     return this
+  }
+
+  public async mergeFromGnarrc(gnarrcPath: string): Promise<PackageJson> {
+    const contents = await Gnarrc.get(`${gnarrcPath}/fragment-package.json`.replace('//', '/'))
+    return this.merge(JSON.parse(contents))
   }
 
   public write() {

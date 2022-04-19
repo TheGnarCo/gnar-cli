@@ -26,14 +26,7 @@
     "import/order": [
       "error",
       {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          "sibling",
-          "index",
-          "parent"
-        ]
+        "groups": ["builtin", "external", "internal", "sibling", "index", "parent"]
       }
     ],
     "no-else-return": "off",

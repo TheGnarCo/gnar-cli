@@ -4,6 +4,7 @@ import Npm from './npm'
 import Yarn from './yarn'
 import { PackageInstallable } from './types'
 import { execCommand } from '../exec-command'
+import { Gnarrc } from '../gnarrc'
 
 const YARN_LOCK_FILE = 'yarn.lock'
 
@@ -16,5 +17,11 @@ export class PackageInstaller {
     process.stdout.write(`Installing dev dependencies via: ${command}\n\n`)
 
     execCommand(command)
+  }
+
+  static async addDevFromGnarrc(gnarrcPath: string): Promise<void> {
+    const contents = await Gnarrc.get(`${gnarrcPath}/.dev.deps`)
+    const packageString = contents.trim().split('\n').join(' ')
+    return PackageInstaller.addDev(packageString)
   }
 }
