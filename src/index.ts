@@ -20,7 +20,10 @@ program
         Eslint.add()
         break
       default:
-        stdOut(`Unrecognized package name passed to gnar add: ${packageName}`)
+        stdOut(`
+          Unrecognized package name passed to gnar add: ${packageName}
+          Recognized Packages: eslint, prettier
+        `)
         break
     }
   })
@@ -38,7 +41,10 @@ program
         Rails.init(subCommand, extraArgs)
         break
       default:
-        stdOut(`Unrecognized framework name passed to gnar add: ${frameworkName}`)
+        stdOut(`
+          Unrecognized Framework name passed to gnar add: ${frameworkName}
+          Recognized Frameworks: rails
+        `)
         break
     }
   })
