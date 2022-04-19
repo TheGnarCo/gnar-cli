@@ -1,3 +1,3 @@
 export function stdOut(message: string) {
-  stdOut(message)
+  process.stdout.write(message)
 }
