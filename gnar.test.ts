@@ -34,7 +34,11 @@ describe('Gnar-CLI', () => {
 
     it(`can successfully run ${testCommand}`, () => {
       expect(() => {
-        execCommand(`cd ${path} && ${testCommand}`)
+        try {
+          execCommand(`cd ${path} && ${testCommand}`)
+        } catch (ex) {
+          process.stdout.write(ex)
+        }
       }).not.toThrowError()
     })
   })
