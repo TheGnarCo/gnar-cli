@@ -11,7 +11,7 @@ const JS_SETUP = [
 ].join(' && ')
 
 const ESLINT_TEST_HACKS = '--no-eslintrc -c .eslintrc.json'
-const RAILS_APP = 'rails-test-app'
+// const RAILS_APP = 'rails-test-app'
 
 describe('Gnar-CLI', () => {
   beforeAll(() => {
@@ -19,8 +19,8 @@ describe('Gnar-CLI', () => {
   })
   describe.each([
     ['eslint', JS_SETUP, `yarn lint ${ESLINT_TEST_HACKS}`],
-    ['prettier', JS_SETUP, 'yarn prettify'],
-    [`rails new ${RAILS_APP}`, 'gem install rails', `cd ${RAILS_APP} && bin/rspec`],
+    // ['prettier', JS_SETUP, 'yarn prettify'],
+    // [`rails new ${RAILS_APP}`, 'gem install rails', `cd ${RAILS_APP} && bin/rspec`],
   ])('%s', (command, setupCommands, testCommand) => {
     const path: string = commandTestPath(command)
 
