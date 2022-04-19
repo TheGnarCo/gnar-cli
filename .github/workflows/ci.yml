@@ -27,7 +27,7 @@ jobs:
       - run: gem install rails
 
       - name: Run Tests
-        run: "yarn test:ci"
+        run: yarn test:ci
 
       - name: Code Cov
         uses: codecov/codecov-action@v2.1.0
