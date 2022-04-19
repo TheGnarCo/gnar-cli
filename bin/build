@@ -1,3 +1,5 @@
+#!/bin/bash
+
 yarn run tsc -p . "$@"
 if [[ ${SKIP_VERSION:-"unset"} == "unset" || ${SKIP_VERSION} == "false" ]]
 then
