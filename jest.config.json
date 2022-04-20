@@ -1,18 +1,16 @@
 {
   "coverageDirectory": "./coverage/",
   "collectCoverage": true,
-  "transform": {
-    "^.+\\.tsx?$": "ts-jest"
-  },
   "globals": {
     "ts-jest": {
-      "tsConfigFile": "tsconfig.json",
-      "enableTsDiagnostics": true
+      "tsconfig": "tsconfig.json",
+      "diagnostics": true
     }
   },
-  "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js|ts)$",
+  "testRegex": "(/__tests__/.*|(\\.|/))\\.test.(j|t)s$",
   "moduleDirectories": ["node_modules", "src"],
-  "moduleFileExtensions": ["ts", "js"],
+  "moduleFileExtensions": ["js", "ts"],
   "globalSetup": "./__tests__/jest/global-setup.js",
-  "coveragePathIgnorePatterns": ["dist/", "node_modules/", ".test-support/", "test"]
+  "coveragePathIgnorePatterns": ["dist/", "node_modules/", "__test__"],
+  "preset": "ts-jest"
 }
