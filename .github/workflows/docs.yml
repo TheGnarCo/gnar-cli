@@ -21,6 +21,8 @@ jobs:
         with:
           cmd: docs
 
+      - run: sudo chown -R $USER:$USER .
+
       - name: Create PR (if required)
         uses: peter-evans/create-pull-request@v4
         with:
