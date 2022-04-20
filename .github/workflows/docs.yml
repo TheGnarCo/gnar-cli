@@ -27,4 +27,9 @@ jobs:
           add-paths: 'docs/*'
           commit-message: '📄 Updating Docs 📄'
           delete-branch: true
+          labels: |
+            docs
+            automated
           title: 'Updating Docs 📄'
+          body: |
+            Updating Docs from recent Merge
