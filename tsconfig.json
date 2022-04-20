@@ -1,12 +1,10 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "lib": [
-      "es2017",
-      "es7",
-      "es6"
-    ],
-    "allowSyntheticDefaultImports": false,
+    "lib": ["es2017", "es7", "es6"],
+    "jsx": "react",
+    "baseUrl": "src",
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
     "module": "commonjs",
@@ -25,10 +23,6 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": [
-    "src/index.ts"
-  ],
-  "exclude": [
-    ".test-support"
-  ]
+  "include": ["src/index.ts"],
+  "exclude": [".test-support"]
 }

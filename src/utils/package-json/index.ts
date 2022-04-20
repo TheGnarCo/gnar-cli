@@ -1,9 +1,10 @@
 import { writeFileSync, readFileSync } from 'node:fs'
 import { merge } from 'lodash'
-import { Gnarrc } from '../gnarrc'
-import { stdOut } from '../std-out'
 
-class PackageJson {
+import { Gnarrc } from 'gnarrc'
+import { stdOut } from 'utils/std-out'
+
+export class PackageJson {
   public contents: string
 
   constructor() {
@@ -32,5 +33,3 @@ class PackageJson {
     writeFileSync('package.json', formattedJson)
   }
 }
-
-export default PackageJson

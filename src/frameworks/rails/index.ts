@@ -1,7 +1,7 @@
 import { Command } from 'commander'
-import { execCommand } from '../../utils/exec-command'
-import { Gnarrc } from '../../utils/gnarrc'
-import { stdOut } from '../../utils/std-out'
+import { execCommand } from 'utils/exec-command'
+import { stdOut } from 'utils/std-out'
+import { Gnarrc } from 'gnarrc'
 
 export class Rails {
   static command = 'rails'

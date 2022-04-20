@@ -1,7 +1,7 @@
-import { PackageInstaller } from '../../utils/package-installer'
-import PackageJson from '../../utils/package-json'
-import { Gnarrc } from '../../utils/gnarrc'
-import { stdOut } from '../../utils/std-out'
+import { PackageInstaller } from 'utils/package-installer'
+import { Gnarrc } from 'gnarrc'
+import { PackageJson } from 'utils/package-json'
+import { stdOut } from 'utils/std-out'
 
 export class Prettier {
   static command = 'prettier'

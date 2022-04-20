@@ -2,8 +2,9 @@
 
 import { program } from 'commander'
 
-import { Eslint, Prettier, Rails } from './commands'
-import { stdOut } from './utils/std-out'
+import { Rails } from 'frameworks'
+import { Eslint, Prettier } from 'packages'
+import { stdOut } from 'utils/std-out'
 
 program.version('0.0.dev')
 
@@ -22,7 +23,7 @@ program
       default:
         stdOut(`
           Unrecognized package name passed to gnar add: ${packageName}
-          Recognized Packages: eslint, prettier
+          Recognized Packages: eslint, prettier, typescript
         `)
         break
     }
