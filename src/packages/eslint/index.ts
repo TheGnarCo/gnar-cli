@@ -1,4 +1,4 @@
-import { Gnarrc } from 'gnarrc'
+import { Gnarrc } from 'utils/gnarrc'
 import { PackageInstaller } from 'utils/package-installer'
 import { PackageJson } from 'utils/package-json'
 import { stdOut } from 'utils/std-out'
