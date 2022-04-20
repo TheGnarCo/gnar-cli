@@ -26,7 +26,7 @@ program
       default:
         stdOut(`
           Unrecognized package name passed to gnar add: ${packageName}
-          Recognized Packages: eslint, prettier, typescript
+          Recognized Packages: eslint, prettier
         `)
         break
     }
