@@ -1,7 +1,6 @@
 import { writeFileSync } from 'node:fs'
 import axios from 'axios'
-
-import { stdOut } from 'utils/std-out'
+import { stdOut } from '../std-out'
 
 const API = axios.create({
   baseURL: 'https://raw.githubusercontent.com/TheGnarCo/.gnarrc/main/',

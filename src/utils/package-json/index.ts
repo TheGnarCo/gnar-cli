@@ -1,8 +1,7 @@
 import { writeFileSync, readFileSync } from 'node:fs'
 import { merge } from 'lodash'
-
-import { Gnarrc } from 'utils/gnarrc'
-import { stdOut } from 'utils/std-out'
+import { stdOut } from '../std-out'
+import { Gnarrc } from '../gnarrc'
 
 export class PackageJson {
   public contents: string

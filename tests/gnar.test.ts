@@ -1,18 +1,7 @@
-import { commandTestPath } from './tests'
-import { execCommand } from './src/utils/exec-command'
+import { commandTestPath, jsSetupCommands } from '.'
 
-function jsSetupCommands({ useTs } = { useTs: false }) {
-  const extension = `.${useTs ? 't' : 'j'}s`
+import { execCommand } from '../src/utils/exec-command'
 
-  return [
-    'yarn init --yes',
-    `touch example${extension}`,
-    'mkdir -p src',
-    `touch src/example${extension}`,
-    useTs ? 'npx tsc --init' : '',
-    'yarn install',
-  ].join(' && ')
-}
 const JS_SETUP = jsSetupCommands()
 const TS_SETUP = jsSetupCommands({ useTs: true })
 
@@ -24,8 +13,8 @@ describe('Gnar-CLI', () => {
     execCommand(`SKIP_VERSION=true yarn build --outDir .test-support/dist`)
   })
   describe.each([
-    ['add eslint', JS_SETUP, `yarn lint ${ESLINT_TEST_HACKS}`],
-    ['add prettier', TS_SETUP, 'yarn prettify'],
+    ['add prettier', JS_SETUP, 'yarn prettify'],
+    ['add eslint', TS_SETUP, `yarn lint ${ESLINT_TEST_HACKS}`],
     [`init rails ${RAILS_APP}`, 'gem install rails', `cd ${RAILS_APP} && bin/rspec`],
   ])('%s', (command, setupCommands, testCommand) => {
     const path: string = commandTestPath(command)

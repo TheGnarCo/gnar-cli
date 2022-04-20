@@ -2,9 +2,12 @@
 
 import { program } from 'commander'
 
-import { Rails } from 'frameworks'
-import { Eslint, Prettier } from 'packages'
-import { stdOut } from 'utils/std-out'
+import { stdOut } from './utils/std-out'
+
+import { Prettier } from './packages/prettier'
+import { Eslint } from './packages/eslint'
+
+import { Rails } from './frameworks/rails'
 
 program.version('0.0.dev')
 

@@ -2,7 +2,6 @@
   "compilerOptions": {
     "target": "es5",
     "jsx": "react",
-    "baseUrl": "src",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "moduleResolution": "node",

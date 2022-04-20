@@ -3,6 +3,9 @@ import { existsSync } from 'node:fs'
 import Npm from './npm'
 import Yarn from './yarn'
 import { PackageInstallable } from './types'
+import { execCommand } from '../exec-command'
+import { Gnarrc } from '../gnarrc'
+import { stdOut } from '../std-out'
 
 const YARN_LOCK_FILE = 'yarn.lock'
 
