@@ -1,4 +1,4 @@
 dist
 coverage
-tests/jest
+__tests__/jest
 docs
