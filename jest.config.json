@@ -4,6 +4,12 @@
   "transform": {
     "^.+\\.tsx?$": "ts-jest"
   },
+  "globals": {
+    "ts-jest": {
+      "tsConfigFile": "tsconfig.json",
+      "enableTsDiagnostics": true
+    }
+  },
   "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js|ts)$",
   "moduleDirectories": ["node_modules", "src"],
   "moduleFileExtensions": ["ts", "js"],
