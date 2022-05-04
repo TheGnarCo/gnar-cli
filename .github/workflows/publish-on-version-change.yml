@@ -41,7 +41,7 @@ jobs:
 
       - if: steps.publish.outputs.type != 'none'
         name: Get pkg-sha
-        run: echo ::set-output name=PKG_SHA::$(shasum -a 256 ./releases/gnar.tar.gz)
+        run: echo ::set-output name=PKG_SHA::$(shasum -a 256 ./release/gnar.tar.gz)
         id: pkg_sha
 
       - if: steps.publish.outputs.type != 'none'
