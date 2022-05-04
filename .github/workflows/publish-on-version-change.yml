@@ -1,0 +1,23 @@
+on: push
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: c-hive/gha-yarn-cache@v2
+
+      - name: Install Yarn Dependencies
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: "install --ignore-engines --ignore-scripts"
+
+      - uses: JS-DevTools/npm-publish@v1
+        id: publish
+        with:
+          dry-run: true
+          token: ${{ secrets.NPM_TOKEN }}
+
+      - if: steps.publish.outputs.type != 'none'
+        run: |
+          echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
