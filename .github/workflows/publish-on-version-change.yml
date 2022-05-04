@@ -12,7 +12,16 @@ jobs:
         with:
           cmd: "install --ignore-engines --ignore-scripts"
 
-      - run: yarn build
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1
+
+      - name: Build
+        run: yarn build
+
+      - name: Run Tests
+        run: yarn test:ci
 
       - uses: JS-DevTools/npm-publish@v1
         id: publish
@@ -25,6 +34,7 @@ jobs:
           echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
 
       - if: steps.publish.outputs.type != 'none'
+        name: Generate Binary
         run: bin/pkg
 
       - if: steps.publish.outputs.type != 'none'
@@ -36,16 +46,17 @@ jobs:
         id: create_release
         uses: avakar/tag-and-release@v1
         with:
-          tag_name: test-v${{ steps.publish.outputs.version }}
+          tag_name: v${{ steps.publish.outputs.version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - if: steps.publish.outputs.type != 'none'
         name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./releases/gnar.tar.gz
-          asset_name: gnar.tar.tz
+          body: SHA ${{ steps.pkg_sha.outputs.PKG_SHA }}
+          append_body: true
+          tag_name: v${{ steps.publish.outputs.version }}
+          generate_release_notes: true
+          files: ./releases/gnar.tar.gz
