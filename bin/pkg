@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo Running 'pkg package.json...'
+pkg package.json --output release/gnar
+
+echo Running 'creating Tar...'
+tar -czf release/gnar.tar.gz release/gnar
+
+echo Running 'Tarball SHA:'
+echo $(shasum -a 256 release/gnar.tar.gz)
