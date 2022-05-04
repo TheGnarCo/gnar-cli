@@ -12,6 +12,9 @@ jobs:
         with:
           cmd: "install --ignore-engines --ignore-scripts"
 
+      - name: Run Tests
+        run: yarn test:ci
+
       - run: yarn build
 
       - uses: JS-DevTools/npm-publish@v1
