@@ -48,13 +48,13 @@ jobs:
         run: |
           echo "Sha: ${{ steps.pkg_sha.outputs.PKG_SHA }}"
 
-      - if: steps.publish.outputs.type != 'none'
-        id: create_release
-        uses: avakar/tag-and-release@v1
-        with:
-          tag_name: test-v${{ steps.publish.outputs.version }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - if: steps.publish.outputs.type != 'none'
+      #   id: create_release
+      #   uses: avakar/tag-and-release@v1
+      #   with:
+      #     tag_name: test-v${{ steps.publish.outputs.version }}
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - if: steps.publish.outputs.type != 'none'
         name: Upload Release Asset
