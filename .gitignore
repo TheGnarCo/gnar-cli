@@ -31,6 +31,7 @@ bower_components
 
 #Build files
 dist
+release
 
 # node-waf configuration
 .lock-wscript

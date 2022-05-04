@@ -11,6 +11,6 @@
   "moduleDirectories": ["node_modules", "src"],
   "moduleFileExtensions": ["js", "ts"],
   "globalSetup": "./__tests__/jest/global-setup.js",
-  "coveragePathIgnorePatterns": ["dist/", "node_modules/", "__test__"],
+  "coveragePathIgnorePatterns": ["dist/", "release/", "node_modules/", "__test__"],
   "preset": "ts-jest"
 }

@@ -8,6 +8,14 @@ Gnar-cli can be installed with your choice of NPM package manager. It should be 
 
 ```js
 yarn global add gnar-cli
+npm install -g gnar-cli
+```
+
+you can also use `brew`:
+
+```bash
+$ brew tap TheGnarCo/gnar
+$ brew install gnar
 ```
 
 This will make the `gnar` executable available in your terminal.
