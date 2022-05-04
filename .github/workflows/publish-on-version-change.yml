@@ -28,7 +28,7 @@ jobs:
         run: bin/pkg
 
       - if: steps.publish.outputs.type != 'none'
-        name: Set selected color
+        name: Get pkg-sha
         run: echo '::set-output name=PKG_SHA::$( shasum -a 256 ./releases/gnar.tar.gz)'
         id: pkg_sha
 
