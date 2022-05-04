@@ -3,8 +3,11 @@ on: push
 jobs:
   publish:
     runs-on: ubuntu-latest
+    env:
+      INPUT_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v3
+      - uses: c-hive/gha-yarn-cache@v2
 
       - name: Install Yarn Dependencies
         uses: borales/actions-yarn@v2.3.0
