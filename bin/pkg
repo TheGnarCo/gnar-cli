@@ -1,10 +1,11 @@
 #!/bin/bash
 
+mkdir -p release
 echo Running 'pkg package.json...'
-pkg package.json --output release/gnar
+yarn run pkg package.json --output release/gnar || { echo 'pkg failed' ; exit 1; }
 
 echo Running 'creating Tar...'
-tar -czf release/gnar.tar.gz release/gnar
+tar -czf release/gnar.tar.gz release/gnar || { echo 'tar failed' ; exit 1; }
 
 echo Running 'Tarball SHA:'
 echo $(shasum -a 256 release/gnar.tar.gz)
