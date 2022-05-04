@@ -21,3 +21,10 @@ jobs:
       - if: steps.publish.outputs.type != 'none'
         run: |
           echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
+
+      - if: steps.publish.outputs.type != 'none'
+        uses: avakar/tag-and-release@v1
+        with:
+          tag_name: test-v${{ steps.publish.outputs.version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
