@@ -20,8 +20,8 @@ jobs:
       - name: Build
         run: yarn build
 
-      - name: Run Tests
-        run: yarn test:ci
+      # - name: Run Tests
+      #   run: yarn test:ci
 
       - uses: JS-DevTools/npm-publish@v1
         id: publish
@@ -39,7 +39,7 @@ jobs:
 
       - if: steps.publish.outputs.type != 'none'
         name: Get pkg-sha
-        run: echo '::set-output name=PKG_SHA::$( shasum -a 256 ./releases/gnar.tar.gz)'
+        run: echo '::set-output name=PKG_SHA::${{ shasum -a 256 ./releases/gnar.tar.gz }}'
         id: pkg_sha
 
       - if: steps.publish.outputs.type != 'none'
@@ -55,7 +55,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           body: SHA ${{ steps.pkg_sha.outputs.PKG_SHA }}
-          append_body: true
           tag_name: v${{ steps.publish.outputs.version }}
           generate_release_notes: true
-          files: ./releases/gnar.tar.gz
+          files: ./release/gnar.tar.gz
