@@ -53,7 +53,6 @@ jobs:
       - if: steps.publish.outputs.type != 'none'
         name: Upload Release Asset
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           body: SHA ${{ steps.pkg_sha.outputs.PKG_SHA }}
           append_body: true
