@@ -7,7 +7,7 @@ The easiest way to adorn your applications with Gnarly Opinions&trade;
 Gnar-cli can be installed with your choice of NPM package manager. It should be installed globally:
 
 ```js
-yarn add --global gnar-cli
+yarn global add gnar-cli
 ```
 
 This will make the `gnar` executable available in your terminal.
