@@ -12,6 +12,8 @@ jobs:
         with:
           cmd: "install --ignore-engines --ignore-scripts"
 
+      - run: yarn build
+
       - uses: JS-DevTools/npm-publish@v1
         id: publish
         with:
@@ -23,8 +25,27 @@ jobs:
           echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
 
       - if: steps.publish.outputs.type != 'none'
+        run: bin/pkg
+
+      - if: steps.publish.outputs.type != 'none'
+        name: Set selected color
+        run: echo '::set-output name=PKG_SHA::$( shasum -a 256 ./releases/gnar.tar.gz)'
+        id: pkg_sha
+
+      - if: steps.publish.outputs.type != 'none'
+        id: create_release
         uses: avakar/tag-and-release@v1
         with:
           tag_name: test-v${{ steps.publish.outputs.version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - if: steps.publish.outputs.type != 'none'
+        name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./releases/gnar.tar.gz
+          asset_name: gnar.tar.tz
