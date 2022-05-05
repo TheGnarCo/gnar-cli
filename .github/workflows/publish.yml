@@ -59,7 +59,7 @@ jobs:
       - if: steps.publish.outputs.type != 'none'
         id: asset_url
         name: Assets Test
-        run: echo ::set-output name=ASSET_URL::${{ fromJson(steps.release.outputs.assets)[0].browser_download_url }}
+        run: echo ::set-output name=ASSET_URL::${{ toJson(steps.release.outputs.assets)[0].browser_download_url }}
 
       - if: steps.publish.outputs.type != 'none'
         name: Prepare Template Forumla
