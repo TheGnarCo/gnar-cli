@@ -19,16 +19,16 @@ jobs:
         with:
           cmd: "install --ignore-engines --ignore-scripts"
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.1
+      # - name: Setup Ruby
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     ruby-version: 3.1
 
       - name: Build
         run: yarn build
 
-      - name: Run Tests
-        run: yarn test:ci
+      # - name: Run Tests
+      #   run: yarn test:ci
 
       - uses: JS-DevTools/npm-publish@v1
         id: publish
@@ -57,3 +57,16 @@ jobs:
           tag_name: test-v${ steps.publish.outputs.version }}
           generate_release_notes: true
           files: ./release/gnar.tar.gz
+
+      - if: steps.publish.outputs.type != 'none'
+        name: Create pull request
+        uses: paygoc6/action-pull-request-another-repo@v1.0.1
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.GNARBOT_TOKEN }}
+        with:
+          source_folder: 'Formula'
+          destination_repo: 'TheGnarCo/homebrew-gnar'
+          destination_head_branch: 'update-v${ steps.publish.outputs.version }'
+          user_email: 'gnarbot@thegnar.co'
+          user_name: 'gnarbot'
+          # pull_request_reviewers: 'reviewers'
