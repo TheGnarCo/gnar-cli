@@ -62,7 +62,7 @@ Gnar-CLI is powered by [TypeScript] which means the project has to be compiled b
 
 [typescript]: https://www.typescriptlang.org/
 
-# Publishing
+## Publishing
 
 See [PUBLISHING.md](PUBLISHING.md)
 
