@@ -41,9 +41,9 @@ jobs:
         run: bin/pkg
 
       - if: steps.publish.outputs.type != 'none'
+        id: pkg_sha
         name: Get pkg-sha
         run: echo ::set-output name=PKG_SHA::$(shasum -a 256 ./release/gnar.tar.gz | cut -d " " -f 1)
-        id: pkg_sha
 
       - if: steps.publish.outputs.type != 'none'
         id: release
@@ -57,13 +57,14 @@ jobs:
           files: ./release/gnar.tar.gz
 
       - if: steps.publish.outputs.type != 'none'
+        id: asset_url
         name: Assets Test
-        run: echo "${{ fromJSON(steps.release.outputs) }}"
+        run: echo ::set-output name=ASSET_URL::${{ fromJSON(steps.release.outputs.assets)[0].browser_download_url }}
 
       - if: steps.publish.outputs.type != 'none'
         name: Prepare Template Forumla
         run: |
-          sed -i'.bkp' 's/$URL/\"foo\"/' Formula/gnar.rb
+          sed -i'.bkp' 's/$URL/\"${{ steps.asset_url.outputs.ASSET_URL }}"/' Formula/gnar.rb
           sed -i'.bkp' 's/$SHA/\"${{ steps.pkg_sha.outputs.PKG_SHA }}\"/' Formula/gnar.rb
           sed -i'.bkp' 's/$VERSION/\"${{ steps.publish.outputs.version }}\"/' Formula/gnar.rb
 
