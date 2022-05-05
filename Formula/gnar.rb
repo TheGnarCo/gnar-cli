@@ -1,3 +1,5 @@
+# Generated from Github Workflow
+# See https://github.com/TheGnarCo/gnar-cli for more information
 # Documentation: https://docs.brew.sh/Formula-Cookbook
 #                https://rubydoc.brew.sh/Formula
 class Gnar < Formula
