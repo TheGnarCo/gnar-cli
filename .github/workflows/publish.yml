@@ -18,16 +18,16 @@ jobs:
         with:
           cmd: "install --ignore-engines --ignore-scripts"
 
-      # - name: Setup Ruby
-      #   uses: ruby/setup-ruby@v1
-      #   with:
-      #     ruby-version: 3.1
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1
 
       - name: Build
         run: yarn build
 
-      # - name: Run Tests
-      #   run: yarn test:ci
+      - name: Run Tests
+        run: yarn test:ci
 
       - uses: JS-DevTools/npm-publish@v1
         id: publish
