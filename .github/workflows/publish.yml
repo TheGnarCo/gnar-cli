@@ -37,26 +37,35 @@ jobs:
           token: ${{ secrets.NPM_TOKEN }}
 
       - if: steps.publish.outputs.type != 'none'
+        name: Generate Binary
+        run: bin/pkg
+
+      - if: steps.publish.outputs.type != 'none'
+        name: Get pkg-sha
+        run: echo ::set-output name=PKG_SHA::$(shasum -a 256 ./release/gnar.tar.gz | cut -d " " -f 1)
+        id: pkg_sha
+
+      - if: steps.publish.outputs.type != 'none'
+        id: release
+        name: Upload Release Asset
+        uses: softprops/action-gh-release@v1
+        with:
+          body: SHA ${{ steps.pkg_sha.outputs.PKG_SHA }}
+          # tag_name: test-v${{ steps.publish.outputs.version }}
+          tag_name: test-TEST
+          generate_release_notes: true
+          files: ./release/gnar.tar.gz
+
+      - if: steps.publish.outputs.type != 'none'
+        name: Assets Test
+        run: echo ${{ steps.release.outputs.assets }}
+
+      - if: steps.publish.outputs.type != 'none'
+        name: Prepare Template Forumla
         run: |
-          echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
-
-      # - if: steps.publish.outputs.type != 'none'
-      #   name: Generate Binary
-      #   run: bin/pkg
-
-      # - if: steps.publish.outputs.type != 'none'
-      #   name: Get pkg-sha
-      #   run: echo ::set-output name=PKG_SHA::$(shasum -a 256 ./release/gnar.tar.gz)
-      #   id: pkg_sha
-
-      # - if: steps.publish.outputs.type != 'none'
-      #   name: Upload Release Asset
-      #   uses: softprops/action-gh-release@v1
-      #   with:
-      #     body: SHA ${{ steps.pkg_sha.outputs.PKG_SHA }}
-      #     tag_name: test-v${{ steps.publish.outputs.version }}
-      #     generate_release_notes: true
-      #     files: ./release/gnar.tar.gz
+          sed -i'.bkp' 's/$URL/\"foo\"/' Formula/gnar.rb
+          sed -i'.bkp' 's/$SHA/\"${{ steps.pkg_sha.outputs.PKG_SHA }}\"/' Formula/gnar.rb
+          sed -i'.bkp' 's/$VERSION/\"${{ steps.publish.outputs.version }}\"/' Formula/gnar.rb
 
       - if: steps.publish.outputs.type != 'none'
         name: Create pull request
@@ -66,6 +75,7 @@ jobs:
         with:
           source_folder: Formula
           destination_repo: TheGnarCo/homebrew-gnar
-          destination_head_branch: update-v${{ steps.publish.outputs.version }}
+          # destination_head_branch: update-v${{ steps.publish.outputs.version }}
+          destination_head_branch: update-TEST
           user_email: gnarbot@thegnar.co
           user_name: gnarbot
