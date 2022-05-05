@@ -23,11 +23,11 @@ jobs:
         with:
           ruby-version: 3.1
 
-      - name: Build
-        run: yarn build
-
       - name: Run Tests
         run: yarn test:ci
+
+      - name: Build
+        run: yarn build
 
       - uses: JS-DevTools/npm-publish@v1
         id: publish
