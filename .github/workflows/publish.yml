@@ -58,7 +58,7 @@ jobs:
 
       - if: steps.publish.outputs.type != 'none'
         name: Assets Test
-        run: echo "${{ toJSON(steps.release.outputs.assets) }}"
+        run: echo ${{ fromJSON(steps.<step-id>.outputs.assets)[0].browser_download_url }}
 
       - if: steps.publish.outputs.type != 'none'
         name: Prepare Template Forumla
