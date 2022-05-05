@@ -15,8 +15,10 @@ In order to publish using the Github Workflow:
 1. Create a pull request where you incremenet the `package.json` version. (This doesn't have to be the only thing in the PR, but I do recommend it be the only thing in the PR)
 1. Merge this PR in to main. (Pushing this commit to main is what triggers the `publish` workflow. It won't get very far if there isn't an update to `package.json`. TODO: Make this cancel out earlier so we don't build and run tests!)
 1. The Workflow will now do most of the NPM and git related work for you.
-1. Building and publishing the new version to NPM
-1. Building and compressing the Binary of the file
-1. Creating a Github tag and release for the new version (complete with automatic changelog), and
-1. Uploading the compressed binary (along with its SHA) to the new release.
+
+- Building and publishing the new version to NPM
+- Building and compressing the Binary of the file
+- Creating a Github tag and release for the new version (complete with automatic changelog), and
+- Uploading the compressed binary (along with its SHA) to the new release.
+
 1. Once the new release is in place, head over to the [Homebrew Formula](https://github.com/TheGnarCo/homebrew-gnar) and update the URL, version #, and SHA to the new values (that you can helpfully find in the release!). This will make the new version available with `brew update`.
