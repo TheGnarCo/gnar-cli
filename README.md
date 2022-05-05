@@ -4,18 +4,18 @@ The easiest way to adorn your applications with Gnarly Opinions&trade;
 
 # Usage
 
-Gnar-cli can be installed with your choice of NPM package manager. It should be installed globally:
-
-```js
-yarn global add gnar-cli
-npm install -g gnar-cli
-```
-
-you can also use `brew`:
+Gnar-cli can be installed most easily with brew:
 
 ```bash
 $ brew tap TheGnarCo/gnar
 $ brew install gnar
+```
+
+You can also use your favorite NPM package manager:
+
+```js
+yarn global add gnar-cli
+npm install -g gnar-cli
 ```
 
 This will make the `gnar` executable available in your terminal.
@@ -52,7 +52,7 @@ Right now, `add` supports `eslint` and `prettier`.
 
 Configuration information and opinons for these commands are maintained by the [`.gnarrc`](https://github.com/TheGnarCo/.gnarrc) repo. PR's Welcome!
 
-# Developing
+## Developing
 
 Gnar-CLI is powered by [TypeScript] which means the project has to be compiled before being run.
 
@@ -61,6 +61,10 @@ Gnar-CLI is powered by [TypeScript] which means the project has to be compiled b
 1. Run `yarn dev` to run the local build of the application
 
 [typescript]: https://www.typescriptlang.org/
+
+# Publishing
+
+See [PUBLISHING.md](PUBLISHING.md)
 
 ## About The Gnar Company
 

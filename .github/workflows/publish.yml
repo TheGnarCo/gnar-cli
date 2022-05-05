@@ -1,4 +1,4 @@
-name: Publish + Release on Version Bump (Merge to main only)
+name: Publish + Release on Version Bump
 on:
   push:
     branches:
