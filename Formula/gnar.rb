@@ -3,10 +3,10 @@
 class Gnar < Formula
   desc 'Decorate your Apps with Gnarly opinions'
   homepage 'https://github.com/TheGnarCo/gnar-cli'
-  url $URL
-  sha256 $SHA
+  url '$URL'
+  sha256 '$SHA'
   license 'MIT'
-  version $VERSION
+  version '$VERSION'
 
   def install
     bin.install 'gnar'
