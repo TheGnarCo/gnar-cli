@@ -57,13 +57,9 @@ jobs:
           files: ./release/gnar.tar.gz
 
       - if: steps.publish.outputs.type != 'none'
-        name: Assets Test
-        run: echo "${{ fromJSON(steps.release.outputs.assets)[0].browser_download_url }}"
-
-      - if: steps.publish.outputs.type != 'none'
         name: Prepare Template Forumla
         run: |
-          sed -i'.bkp' 's/$URL/\"foo\"/' Formula/gnar.rb
+          sed -i'.bkp' 's/$URL/\"${{ fromJSON(steps.release.outputs.assets)[0].browser_download_url }}\"/' Formula/gnar.rb
           sed -i'.bkp' 's/$SHA/\"${{ steps.pkg_sha.outputs.PKG_SHA }}\"/' Formula/gnar.rb
           sed -i'.bkp' 's/$VERSION/\"${{ steps.publish.outputs.version }}\"/' Formula/gnar.rb
 
