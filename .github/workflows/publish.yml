@@ -63,9 +63,9 @@ jobs:
       - if: steps.publish.outputs.type != 'none'
         name: Prepare Template Forumla
         run: |
-          sed -i'.bkp' 's/$URL/\"foo\"/' Formula/gnar.rb
-          sed -i'.bkp' 's/$SHA/\"${{ steps.pkg_sha.outputs.PKG_SHA }}\"/' Formula/gnar.rb
-          sed -i'.bkp' 's/$VERSION/\"${{ steps.publish.outputs.version }}\"/' Formula/gnar.rb
+          sed -i'.bkp' 's/$URL/\'foo\'/' Formula/gnar.rb
+          sed -i'.bkp' 's/$SHA/\'${{ steps.pkg_sha.outputs.PKG_SHA }}\'/' Formula/gnar.rb
+          sed -i'.bkp' 's/$VERSION/\'${{ steps.publish.outputs.version }}\'/' Formula/gnar.rb
 
       - if: steps.publish.outputs.type != 'none'
         name: Create pull request
