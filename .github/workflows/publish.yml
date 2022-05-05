@@ -30,36 +30,36 @@ jobs:
       # - name: Run Tests
       #   run: yarn test:ci
 
-      - uses: JS-DevTools/npm-publish@v1
-        id: publish
-        with:
-          dry-run: true
-          token: ${{ secrets.NPM_TOKEN }}
+      # - uses: JS-DevTools/npm-publish@v1
+      #   id: publish
+      #   with:
+      #     dry-run: true
+      #     token: ${{ secrets.NPM_TOKEN }}
 
-      - if: steps.publish.outputs.type != 'none'
-        run: |
-          echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
+      # - if: steps.publish.outputs.type != 'none'
+      #   run: |
+      #     echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
 
-      - if: steps.publish.outputs.type != 'none'
-        name: Generate Binary
-        run: bin/pkg
+      # - if: steps.publish.outputs.type != 'none'
+      #   name: Generate Binary
+      #   run: bin/pkg
 
-      - if: steps.publish.outputs.type != 'none'
-        name: Get pkg-sha
-        run: echo ::set-output name=PKG_SHA::$(shasum -a 256 ./release/gnar.tar.gz)
-        id: pkg_sha
+      # - if: steps.publish.outputs.type != 'none'
+      #   name: Get pkg-sha
+      #   run: echo ::set-output name=PKG_SHA::$(shasum -a 256 ./release/gnar.tar.gz)
+      #   id: pkg_sha
 
-      - if: steps.publish.outputs.type != 'none'
-        name: Upload Release Asset
-        uses: softprops/action-gh-release@v1
-        with:
-          body: SHA ${{ steps.pkg_sha.outputs.PKG_SHA }}
-          tag_name: test-v${ steps.publish.outputs.version }}
-          generate_release_notes: true
-          files: ./release/gnar.tar.gz
+      # - if: steps.publish.outputs.type != 'none'
+      #   name: Upload Release Asset
+      #   uses: softprops/action-gh-release@v1
+      #   with:
+      #     body: SHA ${{ steps.pkg_sha.outputs.PKG_SHA }}
+      #     tag_name: test-v${ steps.publish.outputs.version }}
+      #     generate_release_notes: true
+      #     files: ./release/gnar.tar.gz
 
-      - if: steps.publish.outputs.type != 'none'
-        name: Create pull request
+      # - if: steps.publish.outputs.type != 'none'
+      - name: Create pull request
         uses: paygoc6/action-pull-request-another-repo@v1.0.1
         env:
           API_TOKEN_GITHUB: ${{ secrets.GNARBOT_TOKEN }}
