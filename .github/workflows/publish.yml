@@ -51,8 +51,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           body: SHA ${{ steps.pkg_sha.outputs.PKG_SHA }}
-          # tag_name: test-v${{ steps.publish.outputs.version }}
-          tag_name: test-TEST
+          # tag_name: v${{ steps.publish.outputs.version }}
+          tag_name: test-v${{ steps.publish.outputs.version }}
           generate_release_notes: true
           files: ./release/gnar.tar.gz
 
@@ -75,7 +75,6 @@ jobs:
         with:
           source_folder: Formula
           destination_repo: TheGnarCo/homebrew-gnar
-          # destination_head_branch: update-v${{ steps.publish.outputs.version }}
-          destination_head_branch: update-TEST
+          destination_head_branch: update-v${{ steps.publish.outputs.version }}
           user_email: gnarbot@thegnar.co
           user_name: gnarbot
