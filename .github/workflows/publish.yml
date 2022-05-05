@@ -58,7 +58,7 @@ jobs:
 
       - if: steps.publish.outputs.type != 'none'
         name: Assets Test
-        run: echo "${{ steps.release.outputs }}"
+        run: echo "${{ steps.release.outputs.keys }}"
 
       - if: steps.publish.outputs.type != 'none'
         name: Prepare Template Forumla
