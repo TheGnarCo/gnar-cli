@@ -64,9 +64,8 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.GNARBOT_TOKEN }}
         with:
-          source_folder: 'Formula'
-          destination_repo: 'TheGnarCo/homebrew-gnar'
-          destination_head_branch: 'update-v${ steps.publish.outputs.version }'
-          user_email: 'gnarbot@thegnar.co'
-          user_name: 'gnarbot'
-          # pull_request_reviewers: 'reviewers'
+          source_folder: Formula
+          destination_repo: TheGnarCo/homebrew-gnar
+          destination_head_branch: update-v${ steps.publish.outputs.version }
+          user_email: gnarbot@thegnar.co
+          user_name: gnarbot
