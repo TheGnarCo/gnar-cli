@@ -1,4 +1,3 @@
-import { Command } from 'commander'
 import { execCommand } from '../../utils/exec-command'
 import { Gnarrc } from '../../utils/gnarrc'
 import { stdOut } from '../../utils/std-out'
@@ -6,45 +5,13 @@ import { stdOut } from '../../utils/std-out'
 export class Rails {
   static command = 'rails'
 
-  static async init(name: string, extraArgs: string) {
+  static async init(name: string, extraArgs: Array<string>) {
     stdOut(`Setting up Rails New with Gnarly opinions...\n`)
 
     const rawOptions = await Gnarrc.get('rails/7/.railsrc')
+    const args = `${rawOptions.replace(/\r\n|\r|\n/g, ' ').trim()} ${extraArgs.join(' ')}`
 
-    const railsCommand = [
-      `rails new`,
-      `${name}`,
-      `${rawOptions.replace(/\r\n|\r|\n/g, ' ')}`.trim(),
-      `${extraArgs}`,
-      `\n`,
-    ].join(' ')
-
-    stdOut(`Running ${railsCommand}`)
-    execCommand(railsCommand)
-  }
-
-  static async run(
-    mainCommand: string,
-    subCommand: string,
-    _options: Record<string, unknown>,
-    command: Command,
-  ) {
-    const extraArgs = command.args
-      .filter(arg => arg !== mainCommand && arg !== subCommand)
-      .join(' ')
-
-    stdOut(`Setting up Rails New with Gnarly opinions...\n`)
-
-    const rawOptions = await Gnarrc.get('rails/7/.railsrc')
-
-    const railsCommand = [
-      `rails`,
-      `${mainCommand}`,
-      `${subCommand}`,
-      `${rawOptions.replace(/\r\n|\r|\n/g, ' ')}`.trim(),
-      `${extraArgs}`,
-      `\n`,
-    ].join(' ')
+    const railsCommand = [`rails new`, `${name}`, `${args}`, `\n`].join(' ')
 
     stdOut(`Running ${railsCommand}`)
     execCommand(railsCommand)
