@@ -3,6 +3,7 @@
 import { program } from 'commander'
 
 import { stdOut } from './utils/std-out'
+import { getExtraArgs } from './utils/get-extra-args'
 
 import { Prettier } from './packages/prettier'
 import { Eslint } from './packages/eslint'
@@ -38,11 +39,9 @@ program
   .argument('<subCommand>', 'subcommand')
   .description('Greenfield Frameworks with Gnarly Opinions')
   .action((frameworkName, subCommand, _options, command) => {
-    const extraArgs = command.args.filter((arg: string) => arg !== subCommand).join(' ')
-
     switch (frameworkName.toLowerCase()) {
       case 'rails':
-        Rails.init(subCommand, extraArgs)
+        Rails.init(subCommand, getExtraArgs(command))
         break
       default:
         stdOut(`
