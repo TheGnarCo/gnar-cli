@@ -1,0 +1,8 @@
+#!/bin/bash
+
+mkdir -p release
+echo Running 'pkg package.json...'
+yarn run pkg package.json --output release/gnar || { echo 'pkg failed' ; exit 1; }
+
+echo Running 'creating Tar...'
+tar -czf release/gnar.tar.gz release/gnar || { echo 'tar failed' ; exit 1; }

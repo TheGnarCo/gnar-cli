@@ -1,0 +1,80 @@
+name: Publish + Release on Version Bump
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      INPUT_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: c-hive/gha-yarn-cache@v2
+
+      - name: Install Yarn Dependencies
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: "install --ignore-engines --ignore-scripts"
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1
+
+      - name: Run Tests
+        run: yarn test:ci
+
+      - name: Build
+        run: yarn build
+
+      - uses: JS-DevTools/npm-publish@v1
+        id: publish
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Generate Binary
+        if: steps.publish.outputs.type != 'none'
+        run: bin/pkg
+
+      - name: Get binary SHA
+        if: steps.publish.outputs.type != 'none'
+        id: pkg_sha
+        run: echo ::set-output name=PKG_SHA::$(shasum -a 256 ./release/gnar.tar.gz | cut -d " " -f 1)
+
+      - name: Create Release and Upload Binary Asset
+        if: steps.publish.outputs.type != 'none'
+        id: release
+        uses: softprops/action-gh-release@HEAD
+        with:
+          body: SHA ${{ steps.pkg_sha.outputs.PKG_SHA }}
+          tag_name: v${{ steps.publish.outputs.version }}
+          append_body: true
+          generate_release_notes: true
+          files: ./release/gnar.tar.gz
+
+      - name: Get Asset URL
+        if: steps.publish.outputs.type != 'none'
+        id: asset_url
+        run: echo ::set-output name=ASSET_URL::${{ fromJson(steps.release.outputs.assets)[0].browser_download_url }}
+
+      - name: Prepare Homebrew Formula
+        if: steps.publish.outputs.type != 'none'
+        run: |
+          sed -i'.bkp' 's|$URL|${{ steps.asset_url.outputs.ASSET_URL }}|' Formula/gnar.rb
+          sed -i'.bkp' 's/$SHA/${{ steps.pkg_sha.outputs.PKG_SHA }}/' Formula/gnar.rb
+          sed -i'.bkp' 's/$VERSION/${{ steps.publish.outputs.version }}/' Formula/gnar.rb
+          rm -f ./Formula/*.bkp
+
+      - name: Create Homebrew-Gnar PR
+        if: steps.publish.outputs.type != 'none'
+        uses: paygoc6/action-pull-request-another-repo@v1.0.1
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.GNARBOT_TOKEN }}
+        with:
+          source_folder: Formula
+          destination_repo: TheGnarCo/homebrew-gnar
+          destination_head_branch: update-v${{ steps.publish.outputs.version }}
+          user_email: gnarbot@thegnar.co
+          user_name: gnarbot
