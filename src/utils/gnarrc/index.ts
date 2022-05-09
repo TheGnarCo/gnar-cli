@@ -2,15 +2,12 @@ import { writeFileSync } from 'node:fs'
 import axios from 'axios'
 import { stdOut } from '../std-out'
 
-const API = axios.create({
-  baseURL: 'https://raw.githubusercontent.com/TheGnarCo/.gnarrc/main/',
-})
+const baseURL =
+  process.env?.DEV_URL || 'https://raw.githubusercontent.com/TheGnarCo/.gnarrc/prod-cli/'
+
+const API = axios.create({ baseURL })
 
 export class Gnarrc {
-  static API = axios.create({
-    baseURL: 'https://raw.githubusercontent.com/TheGnarCo/.gnarrc/main/',
-  })
-
   static async getFile(path: string) {
     const filename = path.split('/').pop() || 'Error'
     stdOut(`Writing the following config to ${filename}\n\n`)
