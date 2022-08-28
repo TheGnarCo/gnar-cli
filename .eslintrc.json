@@ -40,7 +40,6 @@
         "argsIgnorePattern": "_"
       }
     ],
-    "no-use-before-define": "off",
-    "react/jsx-filename-extension": "off"
+    "no-use-before-define": "off"
   }
 }
