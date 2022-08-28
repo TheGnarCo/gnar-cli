@@ -10,7 +10,7 @@ export function jsSetupCommands({ useTs } = { useTs: false }) {
     'mkdir -p src',
     `touch src/example${extension}`,
     useTs ? 'npx tsc --init' : undefined,
-    'yarn install',
+    'yarn install'
   ]
     .filter(n => n)
     .join(' && ')
