@@ -14,7 +14,7 @@ jobs:
       - name: Install Yarn Dependencies
         uses: borales/actions-yarn@v3.0.0
         with:
-          cmd: "install --ignore-engines --ignore-scripts"
+          cmd: 'install --ignore-engines --ignore-scripts'
 
       - name: Build Docs
         uses: borales/actions-yarn@v3.0.0

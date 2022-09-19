@@ -1,0 +1,6 @@
+dist
+coverage
+docs
+node_modules
+.test-support
+*.lock

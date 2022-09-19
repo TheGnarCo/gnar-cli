@@ -1,3 +1,3 @@
 export interface PackageInstallable {
-  addDev: (packages: string) => string
+  addDev: (_packages: string) => string
 }
